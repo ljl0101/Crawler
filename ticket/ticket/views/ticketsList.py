@@ -1,6 +1,5 @@
 import tkinter
 import json
-from tkinter import VERTICAL, BOTH, HORIZONTAL, BOTTOM, X, RIGHT, Y, LEFT
 
 
 class ticketsList():
@@ -37,19 +36,7 @@ class ticketsList():
 
         ticketsList = tkinter.Tk()
         ticketsList.title('12306')  # 定义窗体标题
-
-        frame = tkinter.Frame(ticketsList, width=300, height=300)
-        frame.pack(expand=True, fill=BOTH)  # .grid(row=0,column=0)
-        canvas = tkinter.Canvas(frame, bg='#FFFFFF', width=300, height=300, scrollregion=(0, 0, 500, 500))
-        hbar = tkinter.Scrollbar(frame, orient=HORIZONTAL)
-        hbar.pack(side=BOTTOM, fill=X)
-        hbar.config(command=canvas.xview)
-        vbar = tkinter.Scrollbar(frame, orient=VERTICAL)
-        vbar.pack(side=RIGHT, fill=Y)
-        vbar.config(command=canvas.yview)
-        canvas.config(width=300, height=300)
-        canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
-        canvas.pack(side=LEFT, expand=True, fill=BOTH)
+        ticketsList.geometry('2500x1200+0+0')
 
         def scheduled(row):
             self.param = self.params[row].copy()
@@ -62,7 +49,7 @@ class ticketsList():
         for ticket in tickets:
             list = []
             for value in ticket.values():
-                label = tkinter.Label(canvas, text=value)
+                label = tkinter.Label(ticketsList, text=value)
                 label.grid(row=row, column=column)
                 column += 1
                 list.append(value)
@@ -95,7 +82,7 @@ class ticketsList():
             # to_station_no = tkinter.Label(ticketsList, text = ticket[9])
             # train_data = tkinter.Label(ticketsList, text = ticket[0])
 
-            btn = tkinter.Button(canvas, text='预订' +
+            btn = tkinter.Button(ticketsList, text='预定' +
                                  "{:0>2s}".format(str(row)), command=lambda arg=row: scheduled(arg))
             btn.grid(row=row, column=column)
             column = 0
