@@ -1,5 +1,5 @@
 import tkinter
-from tkinter import scrolledtext, ttk
+from tkinter import scrolledtext
 import json
 import datetime
 import os
@@ -24,17 +24,13 @@ class select():
 
         params = tkinter.Tk()
         params.title('12306')  # 定义窗体标题
-
-        params.geometry("800x450")
-
-        m1 = ttk.LabelFrame(params)
-        m1.grid(column=0, row=1, padx=10, pady=10, columnspan=9)
+        params.geometry('500x600+0+0')
 
         L1 = tkinter.Label(params, text="输入火车票信息", font=(
-            '华文新魏', '18')).grid(row=0, column=2, columnspan=5)
-        L2 = tkinter.Label(m1, text="出发时间:").grid(row=1, column=0)
-        L3 = tkinter.Label(m1, text="出发地:").grid(row=2, column=0)
-        L4 = tkinter.Label(m1, text="目的地:").grid(row=3, column=0)
+            '华文新魏', '18')).grid(row=0, column=1)
+        L2 = tkinter.Label(params, text="出发时间:", font='song -20').grid(row=1)
+        L3 = tkinter.Label(params, text="出发地:", font='song -20').grid(row=2)
+        L4 = tkinter.Label(params, text="目的地:", font='song -20').grid(row=3)
 
         date_year = tkinter.StringVar()
         date_month = tkinter.StringVar()
@@ -44,23 +40,21 @@ class select():
 
         # 设置三个输入文本框
         date_year = tkinter.Entry(
-            params, textvariable=date_year, width=10, font=('Arial', 14))
+            params, textvariable=date_year, width=10, font='song-20')
         date_month = tkinter.Entry(
-            params, textvariable=date_month, width=5, font=('Arial', 14))
+            params, textvariable=date_month, width=5, font='song-20')
         date_day = tkinter.Entry(
-            params, textvariable=date_day, width=5, font=('Arial', 14))
+            params, textvariable=date_day, width=5, font='song-20')
         start_entry = tkinter.Entry(
-            params, textvariable=start_str, width=25, font='song-20')
+            params, textvariable=start_str, width=20, font='song-20')
         arrive_entry = tkinter.Entry(
-            params, textvariable=arrive_str, width=25, font='song-20')
+            params, textvariable=arrive_str, width=20, font='song-20')
 
         date_year.grid(row=1, column=1)
-        tkinter.Label(m1, text='-').grid(row=1, column=2)
-        date_month.grid(row=1, column=3)
-        tkinter.Label(m1, text='-').grid(row=1, column=4)
-        date_day.grid(row=1, column=5)
-        start_entry.grid(row=2, column=1, columnspan=5)
-        arrive_entry.grid(row=3, column=1, columnspan=5)
+        date_month.grid(row=1, column=2)
+        date_day.grid(row=1, column=3)
+        start_entry.grid(row=2, column=1)
+        arrive_entry.grid(row=3, column=1)
 
         def re_input1():
             date_year.delete(0, len(date_year.get()))
@@ -115,36 +109,12 @@ class select():
 
             params.destroy()
 
-        btn1 = tkinter.Button(m1, text='清空', command=re_input1, font=(
-            '宋体', '16')).grid(row=1, column=6)
-        btn2 = tkinter.Button(m1, text='清空', command=re_input2, font=(
-            '宋体', '16')).grid(row=2, column=6)
-        btn3 = tkinter.Button(m1, text='清空', command=re_input3, font=(
-            '宋体', '16')).grid(row=3, column=6)
-        btn4 = tkinter.Button(m1, text='预定', command=select, font=(
-            '宋体', '16')).grid(row=4, column=1, columnspan=5)
-
-        m2 = ttk.LabelFrame(params)
-        m2.grid(column=0, row=5, padx=10, pady=10, columnspan=9)
-
-        tree = ttk.Treeview(m2, show="headings")
-        tree['columns'] = ("车次", "出发站", "到达站", "出发时间", "到达时间", "商务座", "一等座", "二等座", "硬座", "硬卧", "软卧", "无座")
-        width = 65
-        tree.column("车次", width=width)
-        tree.column("出发站", width=width)
-        tree.column("到达站", width=width)
-        tree.column("出发时间", width=width)
-        tree.column("到达时间", width=width)
-        tree.column("商务座", width=width)
-        tree.column("一等座", width=width)
-        tree.column("二等座", width=width)
-        tree.column("硬座", width=width)
-        tree.column("硬卧", width=width)
-        tree.column("软卧", width=width)
-        tree.column("无座", width=width)
-
-        for name in tree['columns']:
-            tree.heading(name, text=name)
-
-        tree.grid(row=5, columnspan=10)
+        btn1 = tkinter.Button(params, text='清空', command=re_input1, font=(
+            '宋体', '16')).grid(row=1, column=4)
+        btn2 = tkinter.Button(params, text='清空', command=re_input2, font=(
+            '宋体', '16')).grid(row=2, column=2)
+        btn3 = tkinter.Button(params, text='清空', command=re_input3, font=(
+            '宋体', '16')).grid(row=3, column=2)
+        btn4 = tkinter.Button(params, text='预定', command=select, font=(
+            '宋体', '16')).grid(row=4, column=1)
         params.mainloop()
